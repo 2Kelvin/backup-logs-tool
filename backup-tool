@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# path for cron jobs
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
 # cli tool to compress and backup data folders
 backup_tool() {
     # log folder argument; removing trailing slash (if there) for tar command's dirname and basename functionality below
