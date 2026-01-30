@@ -37,7 +37,7 @@ To run this tool from anywhere, it should be installed in `/usr/local/bin`. This
     ```git
     git clone https://github.com/2Kelvin/backup-logs-tool.git
     ```
-    and then enter into the directory
+    and then navigate into the directory
     ```bash
     cd backup-logs-tool
     ```
