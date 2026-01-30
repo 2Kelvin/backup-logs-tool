@@ -63,7 +63,7 @@ To run this tool from anywhere, it should be installed in `/usr/local/bin`. This
 
 Because this tool writes to and reads from system-protected directories like `/var/backups` and `/var/log`, it requires administrative privileges. You should run it as **root** or use **sudo** as a user.
 
-### Basic Syntax
+### Syntax
 ```bash
 sudo backup-tool <folder_path>
 ```
