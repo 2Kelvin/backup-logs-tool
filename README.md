@@ -70,4 +70,5 @@ sudo backup-tool <folder_path>
 
 ### Example
 
-Add screenshot here
+<img width="1809" height="360" alt="Screenshot 2026-01-30 083427" src="https://github.com/user-attachments/assets/d97a8711-802a-4f8e-a4a3-98ee6901560a" />
+
