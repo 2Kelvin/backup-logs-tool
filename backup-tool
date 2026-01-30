@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# cli tool to compress and backup data folders
+backup_tool() {
+    # log folder argument; removing trailing slash (if there) for tar command's dirname and basename functionality below
+    local user_log_folder="${1%/}"
+
+    # checking if an argument has been passed in the terminal; if no arg passed fail otherwise continue with script
+    if [[ -z "$user_log_folder" ]]; then
+        echo -e "\n🚨 \e[31mKindly provide a logs folder to backup!" 
+        return 1
+    fi
+
+    # checking if directory given exists
+    if [[ ! -d "$user_log_folder" ]]; then
+        echo -e "\n🚨 \e[31mThe directory you passed doesn't exist. Kindly check your path!"
+        return 1
+    fi
+
+    # fetching timestamp
+    local timestamp=$(date +%Y%m%d_%H%M%S)
+    # naming compressed file with timestamp
+    local filename="log_archive_$timestamp.tar.gz"
+    local backup_folder="/var/backups/my-logs-backup-folder"
+    # mkdir -p makes sure if the file exists nothing happens
+    mkdir -p "$backup_folder"
+    # creating an archive log file to track compressed files with their timestamps
+    local archive_log_file="$backup_folder/archive-logs-history.log"
+
+    # compressing logs
+    echo -e "📦 Compresing \e[34m$user_log_folder\e[0m, please wait..."
+    tar -czf "$backup_folder/$filename" -C "$(dirname "$user_log_folder")" "$(basename "$user_log_folder")"
+    # saving current tar exit code after compression
+    tar_exit_code=$?
+
+    # error checking
+    # if compression is successful...
+    if [[ $tar_exit_code -eq 0 ]]; then
+        touch "$archive_log_file"
+        read -r file_size _ < <(du -h "$backup_folder/$filename")
+        echo "✅ Compression complete. Backup successful"
+        echo -e "📂 Location: \e[34m$backup_folder/$filename\e[0m (\e[32m$file_size\e[0m)"
+        # updating archive log file of the new compression process
+        echo "✅ Sucess: [$timestamp]: $user_log_folder compressed" >> "$archive_log_file"
+    else
+        # remove pre-created empty tar files in compression errors
+        rm -f "$backup_folder/$filename"
+        echo "❌ Backup failed with exit code $tar_exit_code"
+        return 1
+    fi
+}
+
+# running function with folder passed arg in terminal
+backup_tool "$1"
