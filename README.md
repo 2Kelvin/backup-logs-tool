@@ -41,9 +41,6 @@ To run this tool from anywhere, it should be installed in `/usr/local/bin`. This
     ```bash
     cd backup-logs-tool
     ```
-    ```bash
-    sudo mv backup-logs-tool
-    ```
 
 2.  **Move the script to the local bin:**
     ```bash
