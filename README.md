@@ -44,8 +44,23 @@ To run this tool from anywhere, it should be installed in `/usr/local/bin`. This
 
 ## 📖 Usage
 
-Because this tool writes to system-protected directories, it must be run with **root** privileges or via **sudo**.
+Because this tool writes to and reads from system-protected directories like `/var/backups` and `/var/log`, it requires administrative privileges. You should run it as **root** or **sudo** as a user.
 
 ### Basic Syntax
 ```bash
 sudo logbackup <folder_path>
+```
+
+### Output example
+
+Add screenshot here
+
+---
+
+## 📋 Requirements
+
+* **OS:** Any Linux Distribution (Ubuntu, CentOS, Debian, Arch, etc.)
+* **Shell:** Bash
+* **Dependencies:** `tar`, `date`, `mkdir`, `du` (standard on all distros).
+
+---
